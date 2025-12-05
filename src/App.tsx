@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import MobileMenu from './components/MobileMenu';
+import MobilePlayer from './components/MobilePlayer';
+import NovitatPage from './pages/NovitatPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeSection, setActiveSection] = useState('novita');
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="app-container bg-dark">
+        <Header onMenuToggle={() => setShowMobileMenu(true)} />
+        <MobileMenu
+          show={showMobileMenu}
+          onHide={() => setShowMobileMenu(false)}
+          activeSection={activeSection}
+          onSectionChange={setActiveSection}
+        />
+        <div className="d-flex">
+          <Sidebar 
+            activeSection={activeSection}
+            onSectionChange={setActiveSection}
+          />
+          <main className="flex-grow-1 overflow-auto" style={{ height: 'calc(100vh - 64px)', paddingBottom: '80px' }}>
+            {activeSection === 'novita' && <NovitatPage />}
+            {activeSection === 'home' && (
+              <div className="text-white p-5">
+                <h1>Home - Coming Soon</h1>
+              </div>
+            )}
+            {activeSection === 'radio' && (
+              <div className="text-white p-5">
+                <h1>Radio - Coming Soon</h1>
+              </div>
+            )}
+          </main>
+        </div>
+        {/* Mobile Player - visible only on mobile */}
+        <MobilePlayer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;

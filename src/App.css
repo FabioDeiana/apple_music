@@ -1,42 +1,190 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* App Container */
+.app-container {
+  min-height: 100vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area */
+main {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #000;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button,
+a,
+.card,
+[style*="cursor: pointer"] {
+  transition: all 0.2s ease;
+}
+
+/* Custom range slider */
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #3a3a3a;
+  outline: none;
+  border-radius: 2px;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+/* Remove default Bootstrap margins */
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    height: auto !important;
   }
-  to {
-    transform: rotate(360deg);
+
+  .sidebar {
+    display: none !important;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Links */
+a {
+  color: #fc3c44;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e8353d;
+}
+
+/* Focus states */
+button:focus,
+input:focus,
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Input placeholder */
+input::placeholder {
+  color: #8a8a8a;
+  opacity: 1;
+}
+
+/* Bootstrap overrides */
+.btn-danger {
+  background-color: #fc3c44 !important;
+  border-color: #fc3c44 !important;
+}
+
+.btn-danger:hover {
+  background-color: #e8353d !important;
+  border-color: #e8353d !important;
+}
+
+.form-control {
+  background-color: #2a2a2a !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.form-control:focus {
+  background-color: #2a2a2a !important;
+  border: none !important;
+  color: #fff !important;
+}
+/* Mobile Player */
+@media (max-width: 768px) {
+  main {
+    height: calc(100vh - 64px) !important;
+    padding-bottom: 80px !important;
   }
 }
 
-.card {
-  padding: 2em;
+@media (min-width: 769px) {
+  .mobile-player {
+    display: none !important;
+  }
+}
+/* Carousel */
+.carousel-indicators {
+  margin-bottom: -10px;
 }
 
-.read-the-docs {
-  color: #888;
+.carousel-indicators [data-bs-target] {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #8a8a8a;
+  border: none;
+  margin: 0 4px;
+}
+
+.carousel-indicators .active {
+  background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    padding: 0 10px;
+  }
 }
